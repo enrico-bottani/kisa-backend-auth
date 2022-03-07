@@ -6,7 +6,8 @@ function App() {
 
     useEffect(() => {
         let request = "http://localhost:8080/api/students/1";
-        fetch(request,{mode:"cors",method:"GET"}).then(
+       // let request = "http://localhost:8080/login";
+        fetch(request,{mode:"cors",method:"GET",credentials: 'include'}).then(
             response=>{
                 return response.json();
             }

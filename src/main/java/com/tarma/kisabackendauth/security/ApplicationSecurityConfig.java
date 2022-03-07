@@ -14,6 +14,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().authorizeHttpRequests().anyRequest().authenticated();
+        http.cors().and().authorizeHttpRequests().anyRequest().authenticated().and().httpBasic();
     }
 }
