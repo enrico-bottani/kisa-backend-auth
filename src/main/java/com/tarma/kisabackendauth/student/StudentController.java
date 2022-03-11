@@ -19,4 +19,9 @@ public class StudentController {
                 .orElseThrow(() -> new IllegalStateException("Student " + studentId + " does not exists"));
 
     }
+    @GetMapping(".json")
+    public List<Student> addStudent(@PathVariable("studentId") long studentId) {
+        return STUDENTS;
+
+    }
 }

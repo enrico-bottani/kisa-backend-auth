@@ -2,6 +2,7 @@ package com.tarma.kisabackendauth.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
@@ -14,6 +15,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().authorizeHttpRequests().anyRequest().authenticated().and().httpBasic();
+        http.cors().and().csrf().disable().authorizeHttpRequests()
+                .antMatchers(HttpMethod.GET,"/api/students/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/students.json").permitAll()
+                .anyRequest().authenticated()
+                .and().formLogin();
     }
 }
