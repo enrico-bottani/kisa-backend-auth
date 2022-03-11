@@ -21,14 +21,14 @@ function App() {
 
     function authenticate() {
         let request = "http://localhost:8080/login";
-        let password = "09f11391-a04a-4091-acff-309471dca4f6"
+        let password = "password"
         let csrfToken=  Cookies.get('XSRF-TOKEN');
         if (csrfToken==undefined)csrfToken="";
         fetch(request, {
             mode: "cors", method: "POST", headers: {
                 'X-XSRF-TOKEN': csrfToken,
                 'Content-Type': 'application/x-www-form-urlencoded'
-            }, credentials: 'include', body: "username=user&password="+password
+            }, credentials: 'include', body: "username=anna&password="+password
         }).then(
             response => {
                 return response.json();
