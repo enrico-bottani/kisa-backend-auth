@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Cookies from 'js-cookie';
+
 
 function App() {
 
@@ -20,11 +21,14 @@ function App() {
 
     function authenticate() {
         let request = "http://localhost:8080/login";
-
+        let password = "09f11391-a04a-4091-acff-309471dca4f6"
+        let csrfToken=  Cookies.get('XSRF-TOKEN');
+        if (csrfToken==undefined)csrfToken="";
         fetch(request, {
             mode: "cors", method: "POST", headers: {
+                'X-XSRF-TOKEN': csrfToken,
                 'Content-Type': 'application/x-www-form-urlencoded'
-            }, credentials: 'include', body: "username=user&password=eb58d120-ea0c-47e0-89c1-0ddfcdad3ed8"
+            }, credentials: 'include', body: "username=user&password="+password
         }).then(
             response => {
                 return response.json();
